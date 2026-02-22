@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxc-formatter/configuration_schema.json",
   "semi": true,
   "singleQuote": false,
   "trailingComma": "all",

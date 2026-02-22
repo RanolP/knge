@@ -22,7 +22,7 @@ services:
   web:
     image: node:24-bookworm
     working_dir: /workspace/apps/web
-    command: bash -lc "corepack enable && corepack prepare pnpm@10 --activate && pnpm install && pnpm dev"
+    command: bash -lc "apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/* && curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=10.23.0 SHELL=/bin/bash bash - && export PNPM_HOME=/root/.local/share/pnpm && export PATH=$PNPM_HOME:$PATH && pnpm install && pnpm dev"
     ports:
       - "5173:5173"
     volumes:

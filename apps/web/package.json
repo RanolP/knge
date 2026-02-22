@@ -7,8 +7,10 @@
     "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc --noEmit",
-    "lint": "oxlint .",
-    "format": "oxfmt --check --ignore-path .oxfmtignore ."
+    "check:fmt": "oxfmt --check --ignore-path .oxfmtignore .",
+    "check:lint": "oxlint .",
+    "fix:fmt": "oxfmt --ignore-path .oxfmtignore .",
+    "fix:lint": "oxlint --fix ."
   },
   "dependencies": {
     "@react-router/node": "^7.8.2",
