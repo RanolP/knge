@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/oxlintrc.json",
+  "env": {
+    "browser": true,
+    "es2024": true,
+    "node": true
+  },
+  "plugins": ["typescript", "react", "react-perf"],
+  "rules": {
+    "correctness": "error",
+    "suspicious": "warn"
+  }
+}

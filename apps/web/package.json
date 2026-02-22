@@ -1,0 +1,33 @@
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "react-router dev --host 0.0.0.0 --port 5173",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc --noEmit",
+    "check:fmt": "oxfmt --check --ignore-path .oxfmtignore .",
+    "check:lint": "oxlint .",
+    "fix:fmt": "oxfmt --ignore-path .oxfmtignore .",
+    "fix:lint": "oxlint --fix ."
+  },
+  "dependencies": {
+    "@react-router/node": "^7.8.2",
+    "@react-router/serve": "^7.8.2",
+    "isbot": "^5",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router": "^7.8.2"
+  },
+  "devDependencies": {
+    "@react-router/dev": "^7.8.2",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "oxfmt": "^0.34.0",
+    "oxlint": "^0.17.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3"
+  }
+}

@@ -1,0 +1,46 @@
+services:
+  api:
+    image: rust:1.89-bookworm
+    working_dir: /workspace
+    command: cargo run -p api
+    environment:
+      RUST_LOG: api=debug,axum=info
+    ports:
+      - "3000:3000"
+    volumes:
+      - ..:/workspace
+      - api-target:/workspace/target
+    develop:
+      watch:
+        - action: restart
+          path: ../apps/api/src
+        - action: restart
+          path: ../apps/api/Cargo.toml
+        - action: restart
+          path: ../Cargo.toml
+
+  web:
+    image: node:24-bookworm
+    working_dir: /workspace/apps/web
+    command: bash -lc "apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/* && curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=10.23.0 SHELL=/bin/bash bash - && export PNPM_HOME=/root/.local/share/pnpm && export PATH=$PNPM_HOME:$PATH && pnpm install && pnpm dev"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ..:/workspace
+      - web-node-modules:/workspace/apps/web/node_modules
+    develop:
+      watch:
+        - action: sync
+          path: ../apps/web/app
+          target: /workspace/apps/web/app
+        - action: sync
+          path: ../apps/web/react-router.config.ts
+          target: /workspace/apps/web/react-router.config.ts
+        - action: rebuild
+          path: ../apps/web/package.json
+    depends_on:
+      - api
+
+volumes:
+  api-target:
+  web-node-modules:
