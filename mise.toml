@@ -1,14 +1,11 @@
 [tools]
 node = "24"
+pnpm = "10"
 rust = "1.89.0"
-
-[tasks.install-pnpm]
-description = "Install pnpm via curl"
-run = "curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=10.23.0 SHELL=/bin/bash bash -"
 
 [tasks.install-web]
 description = "Install web dependencies"
-run = "cd apps/web && export PNPM_HOME=$HOME/.local/share/pnpm && export PATH=$PNPM_HOME:$PATH && pnpm install"
+run = "cd apps/web && pnpm install"
 
 [tasks.dev]
 description = "Run local development stack with file watching"
@@ -24,4 +21,4 @@ run = "cargo run -p api"
 
 [tasks.web]
 description = "Run React Router web locally"
-run = "cd apps/web && export PNPM_HOME=$HOME/.local/share/pnpm && export PATH=$PNPM_HOME:$PATH && pnpm dev"
+run = "cd apps/web && pnpm dev"
