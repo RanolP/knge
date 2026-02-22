@@ -2,3 +2,23 @@
 node = "24"
 pnpm = "10"
 rust = "1.89.0"
+
+[tasks.install-web]
+description = "Install web dependencies"
+run = "cd apps/web && pnpm install"
+
+[tasks.dev]
+description = "Run local development stack with file watching"
+run = "docker compose -f infras/docker-compose.yml -f infras/docker-compose.dev.yml up --watch"
+
+[tasks.up]
+description = "Run production-like docker compose stack"
+run = "docker compose -f infras/docker-compose.yml up --build"
+
+[tasks.api]
+description = "Run axum api locally"
+run = "cargo run -p api"
+
+[tasks.web]
+description = "Run React Router web locally"
+run = "cd apps/web && pnpm dev"
